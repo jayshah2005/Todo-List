@@ -6,4 +6,29 @@ html{
 body{
     display: flex;
     flex: 1;
+    margin: 0px
+}
+
+#content{
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+}
+
+#sidebar{
+    display: flex;
+    flex: 0.3;
+    max-width: 40rem;
+    background-color: lightblue;
+}
+
+#title{
+    display: flex;
+    flex: 1;
+    font-size: 3rem;
+    height: 3rem;
+    justify-content: center;
+    padding: 1rem;
+    font-weight: bolder;
+    border-bottom: solid black 0.1rem;
 }
