@@ -1,0 +1,38 @@
+form{
+    border: solid black 1px;
+    border-radius: 4px;
+    box-shadow:  2px 2px black;
+}
+
+.input{
+    position: absolute;
+    display: flex;
+    background-color: white;
+    flex-direction: column;
+    gap: 10px;
+    flex: 1;
+    justify-content: center;
+    left:50%;
+    bottom: 50%;
+    padding: 1rem;
+}
+
+input:focus-visible{
+    outline: none;
+    border-color: lightblue;
+}
+
+.formButtons{
+    display: flex;
+    flex: 1;
+    justify-content:space-around;
+}
+
+.button{
+    background-color: white;
+    border: solid black 1px
+}
+
+.button:hover{
+    background-color: lightblue;
+}

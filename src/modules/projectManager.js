@@ -1,12 +1,17 @@
 import { checkListItem } from "./checkListItem";
 import { todoItem } from "./todoItem"
+import { project } from "./project";
 
 export default function projectManager(){
     return{
         projects: [],
 
-        createProject: (title) => {
-            this.projects.push(new project(title))
+        getProjects: () => {
+          return projects  
+        },
+
+        createProject: function (title) {
+            this.projects.push(project(title))
         },
 
         createTask: (title, description, dueDate, priority, notes, checkList, project, status) => {
