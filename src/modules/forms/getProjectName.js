@@ -38,7 +38,7 @@ export default function getProjectName(PROJECT_MANAGER){
 
         if (event.submitter.id === 'create' & name.value != "") {
             PROJECT_MANAGER.createProject(name.value);
-            DOM().updateSidebar(PROJECT_MANAGER);
+            DOM().reloadSidebar(PROJECT_MANAGER);
         } else if(event.submitter.id === 'create' & name.value == "") {
             name.focus();
             return;

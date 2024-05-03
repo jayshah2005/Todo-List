@@ -3,6 +3,9 @@ import getProjectName from "./forms/getProjectName"
 export default function DOM(){
 
     return{
+
+        selectedProject: null,
+
         initializeSideBar(PROJECT_MANAGER){
             const sidebar = document.querySelector('#sidebar')
             const addProject = document.querySelector('#addProject')
@@ -13,9 +16,9 @@ export default function DOM(){
             }) 
         },
 
-        updateSidebar(PROJECT_MANAGER){
+        reloadSidebar(PROJECT_MANAGER){
             const projects = document.querySelector('#projects')
-            console.log('it works!')
+
             while (projects.firstChild) { 
                 projects.removeChild(projects.firstChild); 
             }
@@ -26,12 +29,31 @@ export default function DOM(){
             });
         },
 
+        updateSelectedProject(){
+
+            const projectsDiv = document.querySelector('#projects').children;
+
+            for(const projectDiv of projectsDiv){
+                projectDiv.className = 'project';
+            }
+        
+            this.selectedProject.className = 'project selected';
+        },
+
         createProjectElement(project){
             const projectDiv = document.createElement('div')
             projectDiv.className = 'project'
             projectDiv.innerHTML = project.title;
-            const checkBox = document.createElement('div');
 
+            projectDiv.addEventListener('click', (event) => {
+
+                // If checkbox is the one causing this event then cancel it.
+                if(event.target.innerHTML == "") return;
+                this.selectedProject = event.target;
+                this.updateSelectedProject();
+            })
+
+            const checkBox = document.createElement('div');
             if(project.status == true) checkBox.className = 'checkBox checked';
             else checkBox.className = 'checkBox';
 

@@ -1,5 +1,6 @@
 import './assets/styles/styles.css'
 import './assets/styles/forms.css'
+import './assets/styles/sidebar.css'
 import projectManager from './modules/projectManager'
 import DOM from './modules/DOM';
 
@@ -10,5 +11,5 @@ const page = DOM();
 page.initializeSideBar(PROJECT_MANAGER);
 
 
-PROJECT_MANAGER.createProject("First project");
-page.updateSidebar(PROJECT_MANAGER);
+PROJECT_MANAGER.createProject("All");
+page.reloadSidebar(PROJECT_MANAGER);
