@@ -1,3 +1,5 @@
+import DOM from '../DOM';
+
 export default function getProjectName(PROJECT_MANAGER){
 
     const content = document.querySelector('#content');
@@ -35,7 +37,8 @@ export default function getProjectName(PROJECT_MANAGER){
         const name = document.querySelector('#name')
 
         if (event.submitter.id === 'create' & name.value != "") {
-            return name.value;
+            PROJECT_MANAGER.createProject(name.value);
+            DOM().updateSidebar(PROJECT_MANAGER);
         } else if(event.submitter.id === 'create' & name.value == "") {
             name.focus();
             return;

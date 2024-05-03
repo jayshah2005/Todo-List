@@ -8,4 +8,7 @@ const PROJECT_MANAGER = projectManager();
 const page = DOM();
 
 page.initializeSideBar(PROJECT_MANAGER);
-console.log(PROJECT_MANAGER.projects)
+
+
+PROJECT_MANAGER.createProject("First project");
+page.updateSidebar(PROJECT_MANAGER);
