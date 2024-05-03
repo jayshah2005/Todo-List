@@ -36,7 +36,7 @@ export default function DOM(){
             else checkBox.className = 'checkBox';
 
             checkBox.addEventListener('click', (event)=>{
-                project.status = !project.status;
+                project.changeStatus();
                 if(project.status == true) checkBox.className = 'checkBox checked';
                 else checkBox.className = 'checkBox';
             })

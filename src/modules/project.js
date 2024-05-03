@@ -6,11 +6,16 @@ export function project(title) {
         addTast: (task) => {
             this.tasks.push(task)
         },
+
         deleteTask: (task) => {
             const index = this.tasks.findIndex(t => t.title === task.title);
             if (index !== -1) {
                 this.tasks.splice(index, 1);
             }
+        },
+
+        changeStatus: function () {
+            this.status = !this.status;
         }
     }
 }
