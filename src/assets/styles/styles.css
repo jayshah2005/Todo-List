@@ -20,3 +20,22 @@ body{
     flex: 1;
     flex-direction: row;
 }
+
+#items{
+    display: grid;
+    flex: 1;
+    grid-template-rows: 5rem auto 5rem;
+}
+
+#projectTitle{
+    display: flex;
+    font-size: 3rem;
+    height: 3rem;
+    padding: 1rem;
+    padding-bottom: 0rem;
+    font-weight: bolder;
+    border-bottom: solid lightblue 1rem;
+    justify-content: center;
+    font-family: square;
+    margin-left: auto;
+}
