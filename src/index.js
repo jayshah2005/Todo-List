@@ -6,10 +6,8 @@ import DOM from './modules/DOM';
 
 const PROJECT_MANAGER = projectManager();
 
-const page = DOM();
-
-page.initializeSideBar(PROJECT_MANAGER);
-
+const page = DOM(PROJECT_MANAGER);
 
 PROJECT_MANAGER.createProject("All");
-page.reloadSidebar(PROJECT_MANAGER);
+PROJECT_MANAGER.selectedProject = PROJECT_MANAGER.projects[0];
+page.initializeSideBar();

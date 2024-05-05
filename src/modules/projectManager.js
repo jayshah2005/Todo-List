@@ -6,6 +6,9 @@ export default function projectManager(){
     return{
         projects: [],
 
+        selectedProject: null,
+    
+
         getProjects: () => {
           return projects  
         },

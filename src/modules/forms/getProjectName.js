@@ -1,6 +1,6 @@
 import DOM from '../DOM';
 
-export default function getProjectName(PROJECT_MANAGER){
+export default function getProjectName(DOM){
 
     const content = document.querySelector('#content');
 
@@ -37,8 +37,9 @@ export default function getProjectName(PROJECT_MANAGER){
         const name = document.querySelector('#name')
 
         if (event.submitter.id === 'create' & name.value != "") {
-            PROJECT_MANAGER.createProject(name.value);
-            DOM().reloadSidebar(PROJECT_MANAGER);
+            DOM.PROJECT_MANAGER.createProject(name.value);
+            DOM.reloadSidebar();
+            DOM.updateSelectedProject();
         } else if(event.submitter.id === 'create' & name.value == "") {
             name.focus();
             return;

@@ -1,29 +1,31 @@
 import getProjectName from "./forms/getProjectName"
 
-export default function DOM(){
+export default function DOM(PROJECT_MANAGER){
 
     return{
 
-        selectedProject: null,
+        PROJECT_MANAGER: PROJECT_MANAGER,
 
-        initializeSideBar(PROJECT_MANAGER){
-            const sidebar = document.querySelector('#sidebar')
+        initializeSideBar(){
             const addProject = document.querySelector('#addProject')
-            console.log(PROJECT_MANAGER.projects)
+            console.log(this.PROJECT_MANAGER.projects)
 
             addProject.addEventListener('click', (event) => {
-                getProjectName(PROJECT_MANAGER);
+                getProjectName(this);
             }) 
+            
+            this.reloadSidebar();
+            this.updateSelectedProject();
         },
 
-        reloadSidebar(PROJECT_MANAGER){
+        reloadSidebar(){
             const projects = document.querySelector('#projects')
 
             while (projects.firstChild) { 
                 projects.removeChild(projects.firstChild); 
             }
 
-            PROJECT_MANAGER.projects.forEach(project => {
+            this.PROJECT_MANAGER.projects.forEach(project => {
                 const projectDiv = this.createProjectElement(project);
                 projects.append(projectDiv);
             });
@@ -37,21 +39,27 @@ export default function DOM(){
                 projectDiv.className = 'project';
             }
         
-            this.selectedProject.className = 'project selected';
+            this.findProjectDiv(PROJECT_MANAGER.selectedProject).className = 'project selected';
         },
 
         createProjectElement(project){
             const projectDiv = document.createElement('div')
             projectDiv.className = 'project'
-            projectDiv.innerHTML = project.title;
-
+            projectDiv.id = project.title
+7
             projectDiv.addEventListener('click', (event) => {
 
                 // If checkbox is the one causing this event then cancel it.
                 if(event.target.innerHTML == "") return;
-                this.selectedProject = event.target;
+                PROJECT_MANAGER.selectedProject = this.PROJECT_MANAGER.projects.find((elem) => elem.title === event.target.id) ;
                 this.updateSelectedProject();
             })
+
+            const text = document.createElement('div');
+            text.className = 'text'
+            text.innerHTML = project.title;
+
+            projectDiv.append(text);
 
             const checkBox = document.createElement('div');
             if(project.status == true) checkBox.className = 'checkBox checked';
@@ -66,6 +74,14 @@ export default function DOM(){
             projectDiv.appendChild(checkBox);
 
             return projectDiv;
+        },
+
+        findProjectDiv(project){
+            const projectsDiv = document.querySelector('#projects').children;
+
+            for(const projectDiv of projectsDiv){
+                if(projectDiv.firstElementChild.innerHTML === project.title) return projectDiv;
+            }
         }
     }
 
