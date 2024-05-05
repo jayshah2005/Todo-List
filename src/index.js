@@ -10,4 +10,4 @@ const page = DOM(PROJECT_MANAGER);
 
 PROJECT_MANAGER.createProject("All");
 PROJECT_MANAGER.selectedProject = PROJECT_MANAGER.projects[0];
-page.initializeSideBar();
+page.initialize();

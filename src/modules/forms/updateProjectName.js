@@ -15,15 +15,15 @@ export default function getProjectName(DOM){
     form.appendChild(input);
     const div = document.createElement('div');
     div.className = 'formButtons';
-    const create = document.createElement('button')
-    create.innerHTML = 'Create';
-    create.className = 'button';
-    create.id = 'create'
+    const edit = document.createElement('button')
+    edit.innerHTML = 'Edit';
+    edit.className = 'button';
+    edit.id = 'create'
     const cancel = document.createElement('button');
     cancel.innerHTML = 'Cancel';
     cancel.className = 'button';
     cancel.id = 'cancel';
-    div.appendChild(create);
+    div.appendChild(edit);
     div.appendChild(cancel);
     form.appendChild(div);
     content.appendChild(form)
@@ -35,7 +35,7 @@ export default function getProjectName(DOM){
         const name = document.querySelector('#name')
 
         if (event.submitter.id === 'create' & name.value != "") {
-            DOM.PROJECT_MANAGER.createProject(name.value);
+            DOM.PROJECT_MANAGER.selectedProject.title = name.value;
             DOM.reloadSidebar();
             DOM.updateSelectedProject();
         } else if(event.submitter.id === 'create' & name.value == "") {

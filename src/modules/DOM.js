@@ -1,4 +1,6 @@
 import getProjectName from "./forms/getProjectName"
+import updateProjectName from './forms/updateProjectName'
+import projectIcon from './../assets/images/projectIcon.png'
 
 export default function DOM(PROJECT_MANAGER){
 
@@ -6,13 +8,26 @@ export default function DOM(PROJECT_MANAGER){
 
         PROJECT_MANAGER: PROJECT_MANAGER,
 
-        initializeSideBar(){
+        initialize(){
             const addProject = document.querySelector('#addProject')
             console.log(this.PROJECT_MANAGER.projects)
 
             addProject.addEventListener('click', (event) => {
                 getProjectName(this);
             }) 
+
+            const projectTitle = document.querySelector('#projectTitle')
+            projectTitle.addEventListener('click', ()=>{
+                updateProjectName(this);
+            })
+
+            const img = document.createElement('img')
+            img.src = projectIcon
+            projectTitle.append(img);
+
+            const titleText = document.createElement('div');
+            titleText.id = 'titleText'
+            projectTitle.append(titleText)
             
             this.reloadSidebar();
             this.updateSelectedProject();
@@ -31,22 +46,11 @@ export default function DOM(PROJECT_MANAGER){
             });
         },
 
-        updateSelectedProject(){
-
-            const projectsDiv = document.querySelector('#projects').children;
-
-            for(const projectDiv of projectsDiv){
-                projectDiv.className = 'project';
-            }
-        
-            this.findProjectDiv(PROJECT_MANAGER.selectedProject).className = 'project selected';
-        },
-
         createProjectElement(project){
             const projectDiv = document.createElement('div')
             projectDiv.className = 'project'
             projectDiv.id = project.title
-7
+
             projectDiv.addEventListener('click', (event) => {
 
                 // If checkbox is the one causing this event then cancel it.
@@ -74,6 +78,18 @@ export default function DOM(PROJECT_MANAGER){
             projectDiv.appendChild(checkBox);
 
             return projectDiv;
+        },
+
+        updateSelectedProject(){
+
+            const projectsDiv = document.querySelector('#projects').children;
+
+            for(const projectDiv of projectsDiv){
+                projectDiv.className = 'project';
+            }
+        
+            this.findProjectDiv(PROJECT_MANAGER.selectedProject).className = 'project selected';
+            document.querySelector('#titleText').innerHTML = PROJECT_MANAGER.selectedProject.title;
         },
 
         findProjectDiv(project){
