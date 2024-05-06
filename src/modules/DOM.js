@@ -1,6 +1,9 @@
 import getProjectName from "./forms/getProjectName"
 import updateProjectName from './forms/updateProjectName'
+import displayError from './forms/displayError';
 import projectIcon from './../assets/images/projectIcon.png'
+import askConfirmation from "./forms/AskConfirmation";
+
 
 export default function DOM(PROJECT_MANAGER){
 
@@ -28,7 +31,26 @@ export default function DOM(PROJECT_MANAGER){
             const titleText = document.createElement('div');
             titleText.id = 'titleText'
             projectTitle.append(titleText)
+
+            const deletePoject = document.querySelector('#deleteProject')
+            deletePoject.addEventListener('click', (event) => {
+
+                if(PROJECT_MANAGER.selectedProject.title === "All"){
+                    displayError("You cannot delete this Widget");
+                    return;
+                }
+
+                askConfirmation(this);
+                
+            })
             
+            this.reloadSidebar();
+            this.updateSelectedProject();
+        },
+
+        deleteProject(){
+            PROJECT_MANAGER.deleteProject();
+            PROJECT_MANAGER.selectedProject = this.PROJECT_MANAGER.projects.find((elem) => elem.title === "All") ;
             this.reloadSidebar();
             this.updateSelectedProject();
         },

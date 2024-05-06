@@ -10,11 +10,15 @@ export default function projectManager(){
     
 
         getProjects: () => {
-          return projects  
+          return projects
         },
 
         createProject: function (title) {
             this.projects.push(project(title))
+        },
+
+        deleteProject: function () {
+            this.projects = this.projects.filter(elem => elem.title !== this.selectedProject.title);
         },
 
         createTask: (title, description, dueDate, priority, notes, checkList, project, status) => {
