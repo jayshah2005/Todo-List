@@ -17,7 +17,7 @@ export default function DOM(PROJECT_MANAGER){
             }) 
 
             const projectTitle = document.querySelector('#projectTitle')
-            projectTitle.addEventListener('click', ()=>{
+            projectTitle.addEventListener('click', (event)=>{
                 updateProjectName(this);
             })
 
@@ -54,7 +54,7 @@ export default function DOM(PROJECT_MANAGER){
             projectDiv.addEventListener('click', (event) => {
 
                 // If checkbox is the one causing this event then cancel it.
-                if(event.target.innerHTML == "") return;
+                if(event.target.id == "") return;
                 PROJECT_MANAGER.selectedProject = this.PROJECT_MANAGER.projects.find((elem) => elem.title === event.target.id) ;
                 this.updateSelectedProject();
             })
@@ -64,6 +64,9 @@ export default function DOM(PROJECT_MANAGER){
             text.innerHTML = project.title;
 
             projectDiv.append(text);
+
+            // To not add a status feild for the all section
+            if(project.title === "All") return projectDiv;
 
             const checkBox = document.createElement('div');
             if(project.status == true) checkBox.className = 'checkBox checked';

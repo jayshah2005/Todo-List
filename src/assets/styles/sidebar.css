@@ -58,6 +58,7 @@
 
 .text{
     overflow: scroll;
+    pointer-events:none;
 }
 
 .checkBox{

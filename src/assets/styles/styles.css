@@ -39,3 +39,7 @@ body{
     font-family: square;
     margin-left: auto;
 }
+
+#titleText{
+    overflow: scroll;
+}
