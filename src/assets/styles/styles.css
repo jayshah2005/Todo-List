@@ -24,7 +24,7 @@ body{
 #items{
     display: grid;
     flex: 1;
-    grid-template-rows: 5rem auto 5rem;
+    grid-template-rows: 5rem auto 7rem;
 }
 
 #projectTitle{
@@ -42,4 +42,57 @@ body{
 
 #titleText{
     overflow: scroll;
+}
+
+#buttons{
+    display: flex;
+    flex: 1;
+    justify-content:center;
+    padding: 1rem;
+    gap: 1rem;
+    font-size: 2rem;
+    font-family: square;
+
+    background-color: lightblue;
+    border-top: solid black 1px;
+}
+
+#addTask{
+    display: flex;
+    flex: 0.7;
+    max-width: 28rem;
+    justify-content: center;
+    align-items: center;
+
+    height: 5rem;
+}
+
+#deleteProject{
+    display: flex;
+    flex: 0.3;
+    max-width: 12rem;
+    justify-content: center;
+    align-items: center;
+
+    height: 5rem;
+}
+
+#buttons>div{
+    display: flex;
+    font-size: 2rem;
+    margin: 1rem;
+    font-family: square;
+    text-align: center;
+    justify-content: center;
+    font-weight: bolder;
+    align-self: center;
+    user-select: none;
+
+    background-color: white;
+    color: lightblue;
+    box-shadow:  2px 2px black;
+}
+
+#buttons>div:active{
+    box-shadow:  none;
 }

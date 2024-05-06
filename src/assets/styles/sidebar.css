@@ -3,6 +3,7 @@
     max-width: 16rem;
     background-color: lightblue;
     grid-template-rows: 5rem auto 6rem;
+    border-right: solid black 1px;
 }
 
 #title{
@@ -43,7 +44,6 @@
     flex-direction: column;
     gap: 1rem
 }
-
 
 .project{
     display: flex;
