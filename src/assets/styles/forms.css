@@ -11,9 +11,8 @@ form{
     flex-direction: column;
     gap: 10px;
     flex: 1;
-    justify-content: center;
-    left:50%;
-    bottom: 50%;
+    margin-left: 45%;
+    align-self: center;
     padding: 1rem;
 }
 
@@ -35,4 +34,10 @@ input:focus-visible{
 
 .button:hover{
     background-color: lightblue;
+}
+
+#project>div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
 }

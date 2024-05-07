@@ -4,7 +4,6 @@ export function todoItem(){
         description,
         dueDate,
         priority,
-        notes,
         project: "",
         status: false
     }

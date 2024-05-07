@@ -3,6 +3,7 @@ import updateProjectName from './forms/updateProjectName'
 import displayError from './forms/displayError';
 import projectIcon from './../assets/images/projectIcon.png'
 import askConfirmation from "./forms/AskConfirmation";
+import addTask from "./forms/addTask";
 
 
 export default function DOM(PROJECT_MANAGER){
@@ -43,6 +44,12 @@ export default function DOM(PROJECT_MANAGER){
                 askConfirmation(this);
                 
             })
+
+            const addTaskDiv = document.querySelector('#addTask')
+            addTaskDiv.addEventListener('click', () => {
+                addTask(this)
+            })
+
             
             this.reloadSidebar();
             this.updateSelectedProject();
