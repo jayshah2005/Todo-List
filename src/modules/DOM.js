@@ -41,7 +41,6 @@ export default function DOM(PROJECT_MANAGER){
                 }
 
                 askConfirmation(this);
-                
             })
 
             const addTaskDiv = document.querySelector('#addTask')
@@ -59,6 +58,7 @@ export default function DOM(PROJECT_MANAGER){
             PROJECT_MANAGER.selectedProject = this.PROJECT_MANAGER.projects.find((elem) => elem.title === "All") ;
             this.reloadSidebar();
             this.updateSelectedProject();
+            this.reloadTasks();
         },
 
         reloadSidebar(){
@@ -85,6 +85,7 @@ export default function DOM(PROJECT_MANAGER){
                 if(event.target.id == "") return;
                 PROJECT_MANAGER.selectedProject = this.PROJECT_MANAGER.projects.find((elem) => elem.title === event.target.id) ;
                 this.updateSelectedProject();
+                this.reloadTasks()
             })
 
             const text = document.createElement('div');
@@ -151,7 +152,17 @@ export default function DOM(PROJECT_MANAGER){
                 taskDiv.append(title);
 
                 const checkBoxDiv = document.createElement('div');
-                checkBoxDiv.className = 'checkBox';
+
+                if(task.status == true) checkBoxDiv.className = 'checkBox checked';
+                else checkBoxDiv.className = 'checkBox';
+    
+                checkBoxDiv.addEventListener('click', (event)=>{
+                    task.changeStatus();
+                    if(task.status == true) checkBoxDiv.className = 'checkBox checked';
+                    else checkBoxDiv.className = 'checkBox';
+                })
+    
+
                 taskDiv.append(checkBoxDiv);
 
                 tasks.append(taskDiv);

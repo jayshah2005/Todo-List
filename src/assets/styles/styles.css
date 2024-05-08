@@ -100,10 +100,10 @@ body{
 #tasks{
     display: flex;
     flex-direction: column;
-    flex: 1;
     overflow: scroll;
     padding: 1rem 5rem;
     padding-top: 2rem;
+    gap: 1rem
 }
 
 .task{

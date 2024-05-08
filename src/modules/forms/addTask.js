@@ -104,11 +104,11 @@ export default function addTask(DOM){
     form.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        const name = document.querySelector('#name').value;
-        const description = document.querySelector('#description').value;
-        const date = document.querySelector('#date').value;
-        const priority = document.querySelector("input[type='radio'][name=priority]:checked").id;
-        const project = document.querySelector("input[type='radio'][name=project]:checked").id;
+        const name = form.querySelector('#name').value;
+        const description = form.querySelector('#description').value;
+        const date = form.querySelector('#date').value;
+        const priority = form.querySelector("input[type='radio'][name=priority]:checked").id;
+        const project = form.querySelector("input[type='radio'][name=project]:checked").id;
 
         if (event.submitter.id === 'create' & name != "" & date != "") {
             DOM.PROJECT_MANAGER.selectedProject.createTask(name, description, date, priority, project);

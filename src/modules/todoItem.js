@@ -5,6 +5,9 @@ export function todoItem(title, description, dueDate, priority, project){
         dueDate,
         priority,
         project,
-        status: false
+        status: false,
+        changeStatus: function () {
+            this.status = !this.status;
+        }
     }
 }
