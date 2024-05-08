@@ -4,6 +4,7 @@ import displayError from './forms/displayError';
 import projectIcon from './../assets/images/projectIcon.png'
 import askConfirmation from "./forms/AskConfirmation";
 import addTask from "./forms/addTask";
+import deleteTaskIcon from './../assets/images/deleteTask.png'
 
 
 export default function DOM(PROJECT_MANAGER){
@@ -146,10 +147,29 @@ export default function DOM(PROJECT_MANAGER){
                 const taskDiv = document.createElement('div')
                 taskDiv.classList = 'task ' + task.priority;
 
+                const content = document.createElement('div');
+                content.className = 'content';
+
+                taskDiv.appendChild(content);
+
                 const title = document.createElement('div');
                 title.className = 'title'
                 title.innerHTML = task.title;
-                taskDiv.append(title);
+                content.append(title);
+
+                const dueDate = document.createElement('div');
+                dueDate.className = 'dueDate'
+                dueDate.innerHTML = 'Due on ' + task.dueDate.toString();
+                content.append(dueDate);
+
+                const description = document.createElement('div');
+                description.className = 'description'
+                description.innerHTML = task.description;
+                content.append(description);
+
+                const options = document.createElement('div');
+                options.className = 'options'
+                taskDiv.appendChild(options);
 
                 const checkBoxDiv = document.createElement('div');
 
@@ -163,7 +183,11 @@ export default function DOM(PROJECT_MANAGER){
                 })
     
 
-                taskDiv.append(checkBoxDiv);
+                options.append(checkBoxDiv);
+
+                const deleteTaskImg = document.createElement('img')
+                deleteTaskImg.src = deleteTaskIcon;
+                options.append(deleteTaskImg);
 
                 tasks.append(taskDiv);
             })

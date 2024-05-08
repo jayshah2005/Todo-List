@@ -129,4 +129,31 @@ body{
     box-shadow: 4px 4px black;
 }
 
+.title{
+    font-weight: bold;
+}
+
+.description, .dueDate{
+    display: flex;
+    flex-wrap: wrap;
+    font-family: 'serif';
+    font-size: 1rem
+}
+
+.dueDate{
+    font-weight: bold;
+}
+
+.options{
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    justify-content: space-around;
+}
+
+img{
+    height: 1rem;
+    width: fit-content;
+    align-self: center;
+}
 
