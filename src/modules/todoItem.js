@@ -1,10 +1,10 @@
-export function todoItem(){
+export function todoItem(title, description, dueDate, priority, project){
     return {
         title,
         description,
         dueDate,
         priority,
-        project: "",
+        project,
         status: false
     }
 }

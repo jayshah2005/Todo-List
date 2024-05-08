@@ -1,3 +1,5 @@
+import displayError from "./displayError"
+
 export default function addTask(DOM){
     
     const content = document.querySelector('#content');
@@ -18,7 +20,7 @@ export default function addTask(DOM){
     
     const descriptionLabel = document.createElement('label');
     descriptionLabel.setAttribute('for', 'description');
-    descriptionLabel.innerHTML = 'Description'
+    descriptionLabel.innerHTML = 'Description (Optional)'
     form.appendChild(descriptionLabel);
     const descriptionInput = document.createElement('textarea');
     descriptionInput.id = 'description';
@@ -79,9 +81,6 @@ export default function addTask(DOM){
         projectDiv.appendChild(priorityLabelLow);
     })
 
-
-
-
     const div = document.createElement('div');
     div.className = 'formButtons';
     const create = document.createElement('button')
@@ -97,18 +96,25 @@ export default function addTask(DOM){
     form.appendChild(div);
     content.appendChild(form)
 
+    const x = '#' + DOM.PROJECT_MANAGER.selectedProject.title;
+
+    form.querySelector('#Medium').setAttribute('checked', true);
+    form.querySelector(x).setAttribute('checked', true);
 
     form.addEventListener('submit', (event) => {
         event.preventDefault();
 
-        const name = document.querySelector('#name')
+        const name = document.querySelector('#name').value;
+        const description = document.querySelector('#description').value;
+        const date = document.querySelector('#date').value;
+        const priority = document.querySelector("input[type='radio'][name=priority]:checked").id;
+        const project = document.querySelector("input[type='radio'][name=project]:checked").id;
 
-        if (event.submitter.id === 'create' & name.value != "") {
-            DOM.PROJECT_MANAGER.createProject(name.value);
-            DOM.reloadSidebar();
-            DOM.updateSelectedProject();
-        } else if(event.submitter.id === 'create' & name.value == "") {
-            name.focus();
+        if (event.submitter.id === 'create' & name != "" & date != "") {
+            DOM.PROJECT_MANAGER.selectedProject.createTask(name, description, date, priority, project);
+            DOM.reloadTasks()
+        } else if(event.submitter.id === 'create') {
+            displayError("Please fill out all required feilds")
             return;
         }
 

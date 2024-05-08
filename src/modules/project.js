@@ -1,10 +1,13 @@
+import { todoItem } from "./todoItem";
+
 export function project(title) {
     return {
         title,
         tasks: [],
         status: false,
-        addTast: (task) => {
-            this.tasks.push(task)
+
+        createTask: function (title, description, dueDate, priority, project) {
+            this.tasks.push(todoItem(title, description, dueDate, priority, project))
         },
 
         deleteTask: (task) => {

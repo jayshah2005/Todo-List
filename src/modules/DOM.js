@@ -14,7 +14,6 @@ export default function DOM(PROJECT_MANAGER){
 
         initialize(){
             const addProject = document.querySelector('#addProject')
-            console.log(this.PROJECT_MANAGER.projects)
 
             addProject.addEventListener('click', (event) => {
                 getProjectName(this);
@@ -130,6 +129,33 @@ export default function DOM(PROJECT_MANAGER){
             for(const projectDiv of projectsDiv){
                 if(projectDiv.firstElementChild.innerHTML === project.title) return projectDiv;
             }
+        },
+
+        reloadTasks(){
+
+            const projects = document.querySelector('#tasks')
+
+            while (projects.firstChild) { 
+                projects.removeChild(projects.firstChild); 
+            }
+
+            const tasks = document.querySelector('#tasks')
+
+            PROJECT_MANAGER.selectedProject.tasks.forEach((task)=>{
+                const taskDiv = document.createElement('div')
+                taskDiv.classList = 'task ' + task.priority;
+
+                const title = document.createElement('div');
+                title.className = 'title'
+                title.innerHTML = task.title;
+                taskDiv.append(title);
+
+                const checkBoxDiv = document.createElement('div');
+                checkBoxDiv.className = 'checkBox';
+                taskDiv.append(checkBoxDiv);
+
+                tasks.append(taskDiv);
+            })
         }
     }
 

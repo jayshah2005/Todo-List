@@ -96,3 +96,37 @@ body{
 #buttons>div:active{
     box-shadow:  none;
 }
+
+#tasks{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    overflow: scroll;
+    padding: 1rem 5rem;
+    padding-top: 2rem;
+}
+
+.task{
+    font-family: square;
+    font-size: 1.5rem;
+    display: flex;
+    background-color: lightblue;
+    padding: 1rem;
+}
+
+.task.High{
+    border: solid red 3px;
+    box-shadow: 4px 4px black;
+}
+
+.task.Medium{
+    border: solid yellow 3px;
+    box-shadow: 4px 4px black;
+}
+
+.task.Low{
+    border: solid lightgreen 3px;
+    box-shadow: 4px 4px black;
+}
+
+
