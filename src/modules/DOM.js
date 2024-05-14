@@ -21,6 +21,10 @@ export default function DOM(PROJECT_MANAGER){
 
             const projectTitle = document.querySelector('#projectTitle')
             projectTitle.addEventListener('click', (event)=>{
+                if(document.querySelector('#titleText').innerHTML == 'All') {
+                    displayError("You cannot edit this.")
+                    return
+                }
                 updateProjectName(this);
             })
 
