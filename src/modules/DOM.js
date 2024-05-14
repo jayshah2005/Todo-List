@@ -4,8 +4,7 @@ import displayError from './forms/displayError';
 import projectIcon from './../assets/images/projectIcon.png'
 import askConfirmation from "./forms/AskConfirmation";
 import addTask from "./forms/addTask";
-import deleteTaskIcon from './../assets/images/deleteTask.png'
-
+import editTask from "./forms/editTask"
 
 export default function DOM(PROJECT_MANAGER){
 
@@ -37,7 +36,7 @@ export default function DOM(PROJECT_MANAGER){
             deletePoject.addEventListener('click', (event) => {
 
                 if(PROJECT_MANAGER.selectedProject.title === "All"){
-                    displayError("You cannot delete this Widget");
+                    displayError("You cannot delete this Project");
                     return;
                 }
 
@@ -133,6 +132,7 @@ export default function DOM(PROJECT_MANAGER){
             }
         },
 
+        // Reloads all the tasks for the deleted project on the DOM
         reloadTasks(){
 
             const projects = document.querySelector('#tasks')
@@ -149,6 +149,16 @@ export default function DOM(PROJECT_MANAGER){
 
                 const content = document.createElement('div');
                 content.className = 'content';
+
+                taskDiv.addEventListener('click', (event) => {
+                    const caller = PROJECT_MANAGER.selectedProject.tasks.find(elem => {
+                        return elem.title === event.target.querySelector('.title').innerHTML &
+                        elem.description === event.target.querySelector('.description').innerHTML &
+                        elem.dueDate === event.target.querySelector('.dueDate').innerHTML.split(" ")[2] &
+                        elem.priority === event.currentTarget.className.split(" ")[1]
+                    })
+                    editTask(caller, this);
+                })
 
                 taskDiv.appendChild(content);
 
@@ -182,12 +192,7 @@ export default function DOM(PROJECT_MANAGER){
                     else checkBoxDiv.className = 'checkBox';
                 })
     
-
                 options.append(checkBoxDiv);
-
-                const deleteTaskImg = document.createElement('img')
-                deleteTaskImg.src = deleteTaskIcon;
-                options.append(deleteTaskImg);
 
                 tasks.append(taskDiv);
             })

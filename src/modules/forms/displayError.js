@@ -1,6 +1,10 @@
+import { makeTouchable, makeUntouchable } from "./makeUntouchable";
+
 export default function getProjectName(error){
 
-    const content = document.querySelector('#content');
+    makeUntouchable()
+
+    const content = document.body;
 
     const form = document.createElement('form');
     form.className = 'input';
@@ -20,6 +24,7 @@ export default function getProjectName(error){
 
     form.addEventListener('submit', (event) => {
         event.preventDefault();
+        makeTouchable();
         form.remove();
     })
     

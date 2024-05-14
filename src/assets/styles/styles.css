@@ -133,11 +133,16 @@ body{
     font-weight: bold;
 }
 
+.content>.title{
+    pointer-events:none;
+}
+
 .description, .dueDate{
     display: flex;
     flex-wrap: wrap;
     font-family: 'serif';
-    font-size: 1rem
+    font-size: 1rem;
+    pointer-events: none;
 }
 
 .dueDate{
@@ -151,9 +156,4 @@ body{
     justify-content: space-around;
 }
 
-img{
-    height: 1rem;
-    width: fit-content;
-    align-self: center;
-}
 

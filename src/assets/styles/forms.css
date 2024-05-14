@@ -16,6 +16,10 @@ form{
     padding: 1rem;
 }
 
+.untouchable{
+    pointer-events: none;
+}
+
 input:focus-visible{
     outline: none;
     border-color: lightblue;

@@ -1,5 +1,5 @@
 export default function askConfirmation(DOM){
-    const content = document.querySelector('#content');
+    const content = document.body;
 
     const form = document.createElement('form');
     form.className = 'input';

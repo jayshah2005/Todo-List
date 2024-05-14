@@ -1,6 +1,10 @@
+import { makeTouchable, makeUntouchable } from "./makeUntouchable";
+
 export default function getProjectName(DOM){
 
-    const content = document.querySelector('#content');
+    makeUntouchable()
+
+    const content = document.body;
 
     const form = document.createElement('form');
     form.className = 'input';
@@ -43,6 +47,7 @@ export default function getProjectName(DOM){
             return;
         }
 
+        makeTouchable();
         form.remove();
     })
     
