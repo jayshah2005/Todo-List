@@ -3,21 +3,17 @@ import { todoItem } from "./todoItem"
 import { project } from "./project";
 
 export default function projectManager(){
-    return{
+    const self = {
         projects: [],
 
         selectedProject: null,
 
-        getProjects: () => {
-          return projects
-        },
-
-        createProject: function (title) {
-            this.projects.push(project(title))
+        createProject: (title) => {
+            self.projects.push(project(title))
         },
 
         deleteProject: function () {
-            this.projects = this.projects.filter(elem => elem.title !== this.selectedProject.title);
+            self.projects = self.projects.filter(elem => elem.title !== self.selectedProject.title);
         },
 
         createTask: (title, description, dueDate, priority, notes, checkList, project, status) => {
@@ -31,7 +27,7 @@ export default function projectManager(){
             task.project = project;
             task.status = status;
 
-            this.projects
+            self.projects
                 .find(project => project.title === task.project)
                     .addTask(task);
         },
@@ -46,4 +42,6 @@ export default function projectManager(){
             return checkList;
         }
     }
+
+    return self
 }

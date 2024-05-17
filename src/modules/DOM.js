@@ -155,10 +155,13 @@ export default function DOM(PROJECT_MANAGER){
                 content.className = 'content';
 
                 taskDiv.addEventListener('click', (event) => {
+
+                    if(event.target.querySelector('.title') == null) return;
+
                     const caller = PROJECT_MANAGER.selectedProject.tasks.find(elem => {
-                        return elem.title === event.target.querySelector('.title').innerHTML &
-                        elem.description === event.target.querySelector('.description').innerHTML &
-                        elem.dueDate === event.target.querySelector('.dueDate').innerHTML.split(" ")[2] &
+                        return elem.title === event.target.querySelector('.title').innerHTML &&
+                        elem.description === event.target.querySelector('.description').innerHTML &&
+                        elem.dueDate === event.target.querySelector('.dueDate').innerHTML.split(" ")[2] &&
                         elem.priority === event.currentTarget.className.split(" ")[1]
                     })
                     editTask(caller, this);
