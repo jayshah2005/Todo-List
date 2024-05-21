@@ -1,4 +1,4 @@
-export function todoItem(title, description, dueDate, priority, project){
+export default function todoItem(title, description, dueDate, priority, project){
     return {
         title,
         description,

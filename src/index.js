@@ -4,12 +4,14 @@ import './assets/styles/sidebar.css'
 import projectManager from './modules/projectManager'
 import DOM from './modules/DOM';
 import storageAvailable from './modules/storage/storageAvailable'
+import todoItem from "./modules/todoItem"
+import project from "./modules/project";
 
 
 if (storageAvailable("localStorage")) {
 
     if(localStorage.getItem("PROJECT_MANAGER")){
-        var PROJECT_MANAGER = parse(JSON.parse(localStorage.getItem("PROJECT_MANAGER")));
+        var PROJECT_MANAGER = parse(JSON.parse(localStorage.getItem("PROJECT_MANAGER")), {project, todoItem});
     } else {
         var PROJECT_MANAGER = projectManager();
 
@@ -48,7 +50,6 @@ if (storageAvailable("localStorage")) {
 
 }
 
-
 function process(obj){
 
     for(let key in obj){
@@ -62,15 +63,17 @@ function process(obj){
     return JSON.stringify(obj);
 }
   
-function parse(json) {
+function parse(json, modules) {
+
+    const { project, todoItem } = modules;
 
     for(let key in json){
         try{
             if(json[key].split(" ")[0] === "function"){
-                eval(`json.${key} = ${json[key]}`);
+                json[key] = eval(`(${json[key]})`);
             } 
         }catch(error){
-            json[key] = parse(json[key])
+            json[key] = parse(json[key], modules)
         }      
     }
 

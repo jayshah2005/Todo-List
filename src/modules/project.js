@@ -1,7 +1,7 @@
-import { todoItem } from "./todoItem";
+import todoItem from "./todoItem";
 
-export function project(title) {
-    return {
+export default function project(title) {
+    const self = {
         title,
         tasks: [],
         status: false,
@@ -10,7 +10,7 @@ export function project(title) {
             this.tasks.push(todoItem(title, description, dueDate, priority, project))
         },
 
-        deleteTask: (task) => {
+        deleteTask: function (task) {
             const index = this.tasks.findIndex(t => t.title === task.title);
             if (index !== -1) {
                 this.tasks.splice(index, 1);
@@ -21,4 +21,6 @@ export function project(title) {
             this.status = !this.status;
         }
     }
+
+    return self
 }
