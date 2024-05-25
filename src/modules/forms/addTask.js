@@ -31,7 +31,7 @@ export default function addTask(DOM){
 
     const dateLabel = document.createElement('label');
     dateLabel.setAttribute('for', 'date');
-    dateLabel.innerHTML = 'Project Name'
+    dateLabel.innerHTML = 'Project Due Date'
     form.appendChild(dateLabel);
     const dateInput = document.createElement('input');
     dateInput.type = 'date';
@@ -102,7 +102,7 @@ export default function addTask(DOM){
     const x = '#' + DOM.PROJECT_MANAGER.selectedProject.title;
 
     form.querySelector('#Medium').setAttribute('checked', true);
-    form.querySelector(x).setAttribute('checked', true);
+    form.querySelector('[id="' + x.replace('#', '') + '"]').setAttribute('checked', true);
 
     form.addEventListener('submit', (event) => {
         event.preventDefault();
