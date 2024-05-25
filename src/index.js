@@ -10,10 +10,13 @@ import project from "./modules/project";
 
 if (storageAvailable("localStorage")) {
 
-    if(localStorage.getItem("PROJECT_MANAGER")){
-        var PROJECT_MANAGER = parse(JSON.parse(localStorage.getItem("PROJECT_MANAGER")), {project, todoItem});
+    var PROJECT_MANAGER = projectManager();
+
+    if(localStorage.getItem("projects")){
+        PROJECT_MANAGER.projects = parse(localStorage.getItem("projects"), {project, todoItem}); 
+
+        PROJECT_MANAGER.selectedProject = parseSelectedProject(localStorage.getItem("selectedProject"), {project, todoItem}); 
     } else {
-        var PROJECT_MANAGER = projectManager();
 
         PROJECT_MANAGER.createProject("All");
         PROJECT_MANAGER.selectedProject = PROJECT_MANAGER.projects[0];
@@ -44,7 +47,8 @@ if (storageAvailable("localStorage")) {
     onbeforeunload = (event) => {
         localStorage.clear();
         
-        localStorage.setItem("PROJECT_MANAGER", process(PROJECT_MANAGER))
+        localStorage.setItem("projects", JSON.stringify(PROJECT_MANAGER.projects))
+        localStorage.setItem("selectedProject", JSON.stringify(PROJECT_MANAGER.selectedProject))
     };
 }else {
 
@@ -65,18 +69,38 @@ function process(obj){
   
 function parse(json, modules) {
 
-    const { project, todoItem } = modules;
+    console.log(json)
+    const projects = [];
+    json = JSON.parse(json)
 
-    for(let key in json){
-        try{
-            if(json[key].split(" ")[0] === "function"){
-                json[key] = eval(`(${json[key]})`);
-            } 
-        }catch(error){
-            json[key] = parse(json[key], modules)
-        }      
+    for(let project in json){
+        projects.push(modules.project(json[project].title))
+        projects[project].status = json[project].status
+
+        for(let task in json[project].tasks){
+
+            const p = json[project].tasks[task]
+
+            projects[project].tasks.push(modules.todoItem(p.title, p.description, p.dueDate, p.priority, p.project))
+            projects[project].tasks[task].status = p.status
+        }
     }
 
-    return json
+    return projects
+}
+
+function parseSelectedProject(json, modules){
+    const project = JSON.parse(json)
+    const selectedProject = modules.project(project.title)
+    selectedProject.status = project.status
+
+    for(let task in project.tasks){
+        const p = project.tasks[task]
+
+        selectedProject.tasks.push(modules.todoItem(p.title, p.description, p.dueDate, p.priority, p.project))
+        selectedProject.tasks[task].status = p.status
+    }
+
+    return selectedProject
 }
 
